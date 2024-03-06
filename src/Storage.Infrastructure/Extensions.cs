@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Storage.Infrastructure.DAL;
 
 namespace Storage.Infrastructure
 {
@@ -10,6 +11,8 @@ namespace Storage.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
+
+            services.AddDAL(configuration);
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(swagger =>
