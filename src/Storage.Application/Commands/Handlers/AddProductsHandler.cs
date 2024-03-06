@@ -15,9 +15,9 @@ namespace Storage.Application.Commands.Handlers
         public async Task HandleAsync(AddProducts command)
         {
             var (shippedIn, productNameLike) = command;
-            var products = await _sourceDataRepository.GetProductsAsync();
-            var inventory = await _sourceDataRepository.GetInventoryAsync();
-            var prices = await _sourceDataRepository.GetPricesAsync();
+            var products = await _sourceDataRepository.GetProductsAsync(shippedIn, productNameLike);
+            var inventory = await _sourceDataRepository.GetInventoryAsync(products);
+            var prices = await _sourceDataRepository.GetPricesAsync(products);
         }
     }
 }

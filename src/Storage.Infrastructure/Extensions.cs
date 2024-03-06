@@ -31,6 +31,7 @@ namespace Storage.Infrastructure
         public static WebApplication UseInfrastructure(this WebApplication app)
         {
             app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseReDoc(reDoc =>
             {
                 reDoc.RoutePrefix = "docs";

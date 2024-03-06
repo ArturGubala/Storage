@@ -9,12 +9,13 @@
         public string ProducerName { get; private set; }
         public string Category { get; private set; }
         public int IsWire { get; private set; }
+        public string ShippingTime { get; private set; } 
         public int Available { get; private set; }
         public int IsVendor { get; private set; }
         public string DefaultImage { get; private set; }
 
         public Product(int id, string sku, string name, string ean, string producerName, string category,
-                        int  isWire, int available, int isVendor, string defaultImage)
+                       string shippingTime, int isWire, int available, int isVendor, string defaultImage)
         {
             Id = id;
             Sku = sku;
@@ -23,6 +24,7 @@
             ProducerName = producerName;
             Category = category;
             IsWire = isWire;
+            ShippingTime = shippingTime;
             Available = available;
             IsVendor = isVendor;
             DefaultImage = defaultImage;
