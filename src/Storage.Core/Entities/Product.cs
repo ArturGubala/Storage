@@ -13,24 +13,19 @@
         public int IsVendor { get; private set; }
         public string DefaultImage { get; private set; }
 
-        private Product(int id, string sku, string name, string ean, string productName, string category,
+        public Product(int id, string sku, string name, string ean, string producerName, string category,
                         int  isWire, int available, int isVendor, string defaultImage)
         {
             Id = id;
             Sku = sku;
             Name = name;
             Ean = ean;
-            ProducerName = productName;
+            ProducerName = producerName;
             Category = category;
             IsWire = isWire;
             Available = available;
             IsVendor = isVendor;
             DefaultImage = defaultImage;
         }
-
-        public Product Create(int id, string sku, string name, string ean, string productName, string category,
-                        int isWire, int available, int isVendor, string defaultImage)
-            => new(id, sku, name, ean, productName, category, isWire, available, isVendor, defaultImage);
     }
-
 }

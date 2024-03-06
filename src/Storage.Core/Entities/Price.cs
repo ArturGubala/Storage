@@ -2,16 +2,15 @@
 {
     public class Price
     {
-        public int ProductId { get; private set; }
+        public int ProductId { get; private set; } = 0;
+        public string Sku { get; private set; }
         public decimal NetPriceForUnitOfSale { get; private set; }
 
-        private Price(int productId, decimal netPriceForUnitOfSale)
+        public Price(int productId, string sku, decimal netPriceForUnitOfSale)
         {
             ProductId = productId;
+            Sku = sku;
             NetPriceForUnitOfSale = netPriceForUnitOfSale;
         }
-
-        public Price Create(int productId, decimal netPriceForUnitOfSale)
-            => new Price(productId, netPriceForUnitOfSale);
     }
 }
