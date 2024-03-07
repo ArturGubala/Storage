@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Storage.Application.Abstractions;
 using Storage.Infrastructure.DAL;
 
 namespace Storage.Infrastructure
@@ -24,6 +25,13 @@ namespace Storage.Infrastructure
                     Version = "v1"
                 });
             });
+
+            var infrastructureAssembly = typeof(Extensions).Assembly;
+
+            services.Scan(s => s.FromAssemblies(infrastructureAssembly)
+                .AddClasses(c => c.AssignableTo(typeof(IQueryHandler<,>)))
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
 
             return services;
         }
