@@ -2,6 +2,7 @@
 using Storage.Application.Abstractions;
 using Storage.Application.DTO;
 using Storage.Infrastructure.DAL;
+using Storage.Infrastructure.Exceptions;
 
 namespace Storage.Application.Queries.Handlers
 {
@@ -40,7 +41,7 @@ namespace Storage.Application.Queries.Handlers
                     // TODO: Is it best way to check if product was found? How to got null for entire entity?
                     if (productEntity.Id == null)
                     {
-                        return productDto;
+                        throw new ProductNotFoundException(query.Sku);
                     }
 
                     productDto = new ProductDto()
@@ -56,9 +57,9 @@ namespace Storage.Application.Queries.Handlers
                         ShippingCost = productEntity.ShippingCost,
                     };
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw new Exception();
+                    throw;
                 }
             }
 

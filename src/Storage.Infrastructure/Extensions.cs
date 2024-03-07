@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Storage.Application.Abstractions;
 using Storage.Infrastructure.DAL;
+using Storage.Infrastructure.Exceptions;
 
 namespace Storage.Infrastructure
 {
@@ -12,9 +13,8 @@ namespace Storage.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
-
             services.AddSQLite(configuration);
-
+            services.AddSingleton<ExceptionMiddleware>();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(swagger =>
             {
@@ -38,6 +38,7 @@ namespace Storage.Infrastructure
 
         public static WebApplication UseInfrastructure(this WebApplication app)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseSwagger();
             app.UseSwaggerUI();
             app.UseReDoc(reDoc =>
