@@ -12,7 +12,7 @@ namespace Storage.Infrastructure
         {
             services.AddControllers();
 
-            services.AddDAL(configuration);
+            services.AddSQLite(configuration);
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(swagger =>

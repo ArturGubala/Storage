@@ -137,7 +137,7 @@ namespace Storage.Infrastructure.DAL.Repositories
                     if (!response.IsSuccessStatusCode)
                     {
                         // TODO: rzucic odpowiedni wyjatek
-                        return null;
+                        throw new Exception();
                     }
                     
                      return await response.Content.ReadAsStreamAsync();
@@ -145,7 +145,7 @@ namespace Storage.Infrastructure.DAL.Repositories
                 catch (Exception ex)
                 {
                     // TODO: rzucic odpowiedni wyjatek
-                    return null;
+                    throw new Exception();
                 }
             }
         }
