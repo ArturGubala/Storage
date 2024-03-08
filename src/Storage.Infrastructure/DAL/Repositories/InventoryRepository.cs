@@ -29,9 +29,9 @@ namespace Storage.Infrastructure.DAL.Repositories
                 {
                     await connection.BulkActionAsync(x => x.BulkInsert(inventory));
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw new Exception();
+                    throw;
                 }
             }
         }

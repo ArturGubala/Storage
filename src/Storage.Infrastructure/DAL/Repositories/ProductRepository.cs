@@ -36,17 +36,11 @@ namespace Storage.Infrastructure.DAL.Repositories
                 {
                     await connection.BulkActionAsync(x => x.BulkInsert(products));
                 } 
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw new Exception();
+                    throw;
                 }
             }
-
-        }
-
-        public Task<Product> GetBySkuAsync(string sku)
-        {
-            throw new NotImplementedException();
         }
     }
 }
