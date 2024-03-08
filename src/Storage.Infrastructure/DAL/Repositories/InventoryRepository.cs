@@ -27,7 +27,7 @@ namespace Storage.Infrastructure.DAL.Repositories
             {
                 try
                 {
-                    await connection.BulkActionAsync(x => x.BulkInsert(inventory.ToArray()));
+                    await connection.BulkActionAsync(x => x.BulkInsert(inventory));
                 }
                 catch (Exception ex)
                 {
