@@ -134,7 +134,7 @@ namespace Storage.Infrastructure.DAL.Repositories
 
                     if (!response.IsSuccessStatusCode)
                     {
-                        // TODO: Shoudl I create new type of exception for this situation?
+                        // TODO: Should I create new type of exception for this situation?
                         throw new Exception();
                     }
 

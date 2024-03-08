@@ -16,6 +16,12 @@ namespace Storage.Infrastructure.DAL
 
         public IDbConnection CreateConnection()
         {
+            // TODO: Move checking to different place, now I don't know where
+            var dbDirectory = _configuration.GetConnectionString("dbDirectory");
+            if (!Directory.Exists(dbDirectory))
+            {
+                Directory.CreateDirectory(dbDirectory);
+            }
             return new SqliteConnection(_configuration.GetConnectionString("SQLite"));
         }
 
