@@ -3,6 +3,7 @@
     internal sealed class SourceCsvDataOptions
     {
         public string BaseUrl { get; set; }
+        public string DirPathForSavingFiles { get; set; }
         public FileOptions ProductFileOptions { get; set; }
         public FileOptions InventoryFileOptions { get; set; }
         public FileOptions PricesFileOptions { get; set; }

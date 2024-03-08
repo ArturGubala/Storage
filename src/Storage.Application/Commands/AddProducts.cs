@@ -2,5 +2,5 @@
 
 namespace Storage.Application.Commands
 {
-    public sealed record AddProducts(int ShippingIn, string ProductNameLike) : ICommand;
+    public sealed record AddProducts(int ShippingIn, string ProductNameNotLike) : ICommand;
 }

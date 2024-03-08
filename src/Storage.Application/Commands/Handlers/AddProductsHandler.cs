@@ -22,15 +22,15 @@ namespace Storage.Application.Commands.Handlers
 
         public async Task HandleAsync(AddProducts command)
         {
-            var (shippedIn, productNameLike) = command;
+            var (shippedIn, productNameNotLike) = command;
 
             if (shippedIn != 24 && shippedIn != 48 && shippedIn != 72)
             {
                 throw new ShippedInValueNotAllowedException();
             }
 
-            var products = await _sourceDataRepository.GetProductsAsync(shippedIn, productNameLike);
-            var inventory = await _sourceDataRepository.GetInventoryAsync(products);
+            var products = await _sourceDataRepository.GetProductsAsync(shippedIn, productNameNotLike);
+            var inventory = await _sourceDataRepository.GetInventoryAsync(shippedIn);
             var prices = await _sourceDataRepository.GetPricesAsync(products);
 
             await _productRepository.AddManyAsync(products);

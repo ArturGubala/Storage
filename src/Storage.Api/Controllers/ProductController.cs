@@ -20,9 +20,9 @@ namespace Storage.Api.Controller
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromQuery] int shippedIn, [FromQuery] string productNameLike, AddProducts command)
+        public async Task<ActionResult> Post([FromQuery] int shippedIn, [FromQuery] string productNameNotLike, AddProducts command)
         {
-            await _addProductsHandler.HandleAsync(command with { ShippingIn = shippedIn, ProductNameLike = productNameLike});
+            await _addProductsHandler.HandleAsync(command with { ShippingIn = shippedIn, ProductNameNotLike = productNameNotLike});
             return NoContent();
         }
 

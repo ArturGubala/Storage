@@ -4,7 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # My ignores
-/database/
+database/
+csv_files/
 
 # User-specific files
 *.rsuser

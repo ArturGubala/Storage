@@ -1,6 +1,6 @@
-﻿using Dapper;
-using Storage.Core.Entities;
+﻿using Storage.Core.Entities;
 using Storage.Core.Repositories;
+using Z.Dapper.Plus;
 
 namespace Storage.Infrastructure.DAL.Repositories
 {
@@ -15,17 +15,19 @@ namespace Storage.Infrastructure.DAL.Repositories
 
         public async Task AddManyAsync(IEnumerable<Inventory> inventory)
         {
-            var query = """"
-                    insert into INVENTORY (PRODUCT_ID, STOCK_QTY, SALE_UNIT, SHIPPING_COST)
-                    values (@ProductId, @StockQty, @SaleUnit, @ShippingCost);    
-                """";
-
+            DapperPlusManager
+                .Entity<Inventory>()
+                .Table("INVENTORY")
+                .Map(inventory => inventory.ProductId, "PRODUCT_ID")
+                .Map(inventory => inventory.StockQty, "STOCK_QTY")
+                .Map(inventory => inventory.SaleUnit, "SALE_UNIT")
+                .Map(inventory => inventory.ShippingCost, "SHIPPING_COST");
 
             using (var connection = _dbContext.CreateConnection())
             {
                 try
                 {
-                   await connection.ExecuteAsync(query, inventory.ToArray());
+                    await connection.BulkActionAsync(x => x.BulkInsert(inventory.ToArray()));
                 }
                 catch (Exception ex)
                 {
